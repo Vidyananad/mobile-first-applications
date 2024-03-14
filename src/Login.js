@@ -19,6 +19,8 @@ const Login = () => {
     }
     else if(usermail==="nevergiveup@gmail.com" && userPassword==="12345678"){
       navigate('/jokes')
+      localStorage.setItem('usermail', 'nevergiveup@gmail.com')
+      localStorage.setItem('userPassword', '12345678')
     }
     else{
       alert("invalid credentials")

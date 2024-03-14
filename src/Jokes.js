@@ -6,9 +6,14 @@ const Jokes = () => {
     const [data, setData] = useState([])
     
     const url= 'https://v2.jokeapi.dev/joke/any?format=json&blacklistFlags=nsfw,sexist&type=single&lang=EN&amount=10'
+
     useEffect(()=>{
-      fetch(url).then(res => res.json()).then(Data => setData(Data.jokes))
-    },[])
+        fetch(url).then(res => res.json()).then(Data => setData(Data.jokes))
+      },[]) 
+
+    const Fetching = (data) => {
+            fetch(url).then(res => res.json()).then(Data => setData(Data.jokes))
+    }
 
     return(
         <>
@@ -20,6 +25,8 @@ const Jokes = () => {
                 </div> )}
         </div>
         </div>
+        <button className="m-3 btn btn-success" onClick={Fetching}>Fetch</button>
+        <button className="m-3 btn btn-danger">Logout</button>
         </>
     )
 }
