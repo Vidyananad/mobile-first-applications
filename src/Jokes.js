@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import './App.css'
 
 const Jokes = () => {
 
     const [data, setData] = useState([])
-    
+    let navigate = useNavigate() 
     const url= 'https://v2.jokeapi.dev/joke/any?format=json&blacklistFlags=nsfw,sexist&type=single&lang=EN&amount=10'
 
     useEffect(()=>{
@@ -15,6 +16,11 @@ const Jokes = () => {
             fetch(url).then(res => res.json()).then(Data => setData(Data.jokes))
     }
 
+    const Logout = () =>{
+        localStorage.clear()
+        navigate("/")
+    }
+ 
     return(
         <>
         <div className="jokes-page-container">
@@ -26,7 +32,7 @@ const Jokes = () => {
         </div>
         </div>
         <button className="m-3 btn btn-success" onClick={Fetching}>Fetch</button>
-        <button className="m-3 btn btn-danger">Logout</button>
+        <button className="m-3 btn btn-danger" onClick={Logout}>Logout</button>
         </>
     )
 }
